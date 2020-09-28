@@ -18,10 +18,7 @@ router.post('/:ids/:idr', (req, res) => {
 });
 router.put('/:ids/:idr', (req, res) => {
   user
-    .updateOne(
-      { _id: req.params.ids },
-      { $inc: { credits: -req.body.credits } }
-    )
+    .update({ _id: req.params.ids }, { $inc: { credits: -req.body.credits } })
     .then(() => res.json({ success: true }))
     .catch((err) => res.status(404).json({ error: err }));
   user
