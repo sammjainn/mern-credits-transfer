@@ -74,9 +74,9 @@ export default class Transfer extends Component {
       return (
         <div>
           <h3>Create New Transaction</h3>
-          <p style={{ background: 'red' }}>
+          <div class='alert alert-danger' role='alert'>
             {this.state.error ? 'Not Enough Credits' : null}
-          </p>
+          </div>
           <form onSubmit={this.onSubmit}>
             <div className='form-group'>
               <label>Send To: </label>
@@ -110,14 +110,6 @@ export default class Transfer extends Component {
               />
             </div>
             <div className='form-group'>
-              {/* <Link
-              to='../transactions'
-              onClick={this.onSubmit}
-              value='Transfer money'
-              className='btn btn-primary'
-            >
-              Transfer money
-            </Link> */}
               <input
                 type='submit'
                 value='Transfer money'
