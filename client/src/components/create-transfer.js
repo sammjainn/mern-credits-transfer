@@ -50,7 +50,6 @@ export default class Transfer extends Component {
         error: true,
         errorMessage: 'Sender and Receiver are same!'
       });
-
       setTimeout(() => {
         this.setState({ error: false });
       }, 2000);
@@ -70,6 +69,9 @@ export default class Transfer extends Component {
         .put('/transfer/' + sID + '/' + id[0]._id, transaction)
         .then((res) => console.log('success'))
         .catch((err) => console.log('error'));
+      setTimeout(() => {
+        alert(' Credits Transfered successfully');
+      });
 
       this.setState({ redirect: true });
     } else {
@@ -135,7 +137,7 @@ export default class Transfer extends Component {
         </div>
       );
     } else {
-      return <Redirect to='/transactions' />;
+      return <Redirect to='/transactions-log' />;
     }
   }
 }
