@@ -8,7 +8,8 @@ export default class Transfer extends Component {
     amount: '',
     users: [],
     error: false,
-    redirect: false
+    redirect: false,
+    errorMessage: ''
   };
 
   componentDidMount() {
@@ -59,8 +60,15 @@ export default class Transfer extends Component {
         .put('/transfer/' + sID + '/' + id[0]._id, transaction)
         .then((res) => console.log('success'))
         .catch((err) => console.log('error'));
+
+      if (sender[0].username == this.state.username)
+        this.setState({ errorMessage: 'Sender and Receiver are same!' });
+
+      setTimeout(() => {
+        this.setState({ error: false });
+      }, 2000);
     } else {
-      this.setState({ error: true });
+      this.setState({ error: true, errorMessage: 'Not enough credits!' });
     }
   };
 
@@ -71,13 +79,10 @@ export default class Transfer extends Component {
           <h3>Create New Transaction</h3>
 
           {this.state.error ? (
-            <div className='alert alert-danger text-white'>
-              'Not Enough Credits'
+            <div className='p-2' style={{ background: 'red', color: 'white' }}>
+              {this.state.errorMessage}
             </div>
           ) : null}
-          {setTimeout(() => {
-            this.setState({ error: false });
-          }, 2000)}
 
           <form onSubmit={this.onSubmit}>
             <div className='form-group'>
