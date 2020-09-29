@@ -9,7 +9,8 @@ export default class Transfer extends Component {
     users: [],
     error: false,
     redirect: false,
-    errorMessage: ''
+    errorMessage: '',
+    success: false
   };
 
   componentDidMount() {
@@ -70,6 +71,10 @@ export default class Transfer extends Component {
         .then((res) => console.log('success'))
         .catch((err) => console.log('error'));
 
+      this.setState({ success: true });
+      setTimeout(() => {
+        this.setState({ redirect: true });
+      }, 2000);
       this.setState({ redirect: true });
     } else {
       this.setState({ error: true, errorMessage: 'Not enough credits!' });
@@ -88,6 +93,15 @@ export default class Transfer extends Component {
           {this.state.error ? (
             <div className='p-2' style={{ background: 'red', color: 'white' }}>
               {this.state.errorMessage}
+            </div>
+          ) : null}
+
+          {this.state.success ? (
+            <div
+              className='p-2'
+              style={{ background: 'green', color: 'white' }}
+            >
+              Transaction successful
             </div>
           ) : null}
 
