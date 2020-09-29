@@ -18,9 +18,9 @@ export default class TransactionsList extends Component {
   }
   componentDidMount() {
     axios
-      .get('/transactions')
+      .get('http://localhost:5000/transactions')
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         this.setState({ transactions: response.data });
       })
       .catch((error) => console.log('The error is', error));
@@ -41,18 +41,20 @@ export default class TransactionsList extends Component {
     return (
       <div>
         <h3>All Transactions Logs</h3>
-        <table className='table'>
-          <thead className='thead-light'>
-            <tr>
-              <th>Sent By</th>
-              <th>Sent To</th>
-              <th>Credit Amount</th>
-              <th>Date</th>
-              <th>Time</th>
-            </tr>
-          </thead>
-          <tbody>{this.transactionList()}</tbody>
-        </table>
+        <div className='table-responsive'>
+          <table className='table table-striped table-dark table-hover'>
+            <thead className='thead-light'>
+              <tr>
+                <th>Sent By</th>
+                <th>Sent To</th>
+                <th>Credit Amount</th>
+                <th>Date</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>{this.transactionList()}</tbody>
+          </table>
+        </div>
       </div>
     );
   }

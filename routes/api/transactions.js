@@ -5,7 +5,10 @@ const router = express.Router();
 const transactions = require('../../models/transactions');
 
 router.get('/', (req, res) => {
-  transactions.find().then((transaction) => res.json(transaction));
+  transactions
+    .find()
+    .sort({ date: -1 })
+    .then((transaction) => res.json(transaction));
 });
 
 module.exports = router;

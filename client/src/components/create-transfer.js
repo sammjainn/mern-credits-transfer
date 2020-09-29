@@ -13,7 +13,7 @@ export default class Transfer extends Component {
 
   componentDidMount() {
     axios
-      .get('/users')
+      .get('http://localhost:5000/users')
       .then((response) => {
         // console.log(response);
         this.setState({ users: response.data });
@@ -37,11 +37,10 @@ export default class Transfer extends Component {
     const id = this.state.users.filter((user) => {
       return user.username === this.state.username;
     });
-    // console.log(id[0]._id);
 
     const senderID = window.location.href.split('/');
     const sID = senderID[senderID.length - 1];
-    // console.log(sID);
+
     const sender = this.state.users.filter((user) => {
       return user._id === sID;
     });
@@ -53,17 +52,20 @@ export default class Transfer extends Component {
       };
 
       axios
-        .post('/transfer/' + sID + '/' + id[0]._id, transaction)
-        .then((res) => console.log(res.data))
+        .post(
+          'http://localhost:5000/transfer/' + sID + '/' + id[0]._id,
+          transaction
+        )
+        .then((res) => console.log('success'))
         .catch((err) => console.log('error'));
 
       axios
-        .put('/transfer/' + sID + '/' + id[0]._id, transaction)
-        .then((res) => console.log(res.data))
+        .put(
+          'http://localhost:5000/transfer/' + sID + '/' + id[0]._id,
+          transaction
+        )
+        .then((res) => console.log('success'))
         .catch((err) => console.log('error'));
-
-      // setTimeout(() => (window.location = '/transactions'), 2000);
-      this.setState({ redirect: true });
     } else {
       this.setState({ error: true });
     }
@@ -74,9 +76,13 @@ export default class Transfer extends Component {
       return (
         <div>
           <h3>Create New Transaction</h3>
-          <div class='alert alert-danger' role='alert'>
-            {this.state.error ? 'Not Enough Credits' : null}
-          </div>
+
+          {this.state.error ? (
+            <div className='alert alert-danger text-white'>
+              'Not Enough Credits'
+            </div>
+          ) : null}
+
           <form onSubmit={this.onSubmit}>
             <div className='form-group'>
               <label>Send To: </label>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import './App.css';
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Navbar from './components/navbar';
@@ -11,10 +11,10 @@ import HomePage from './components/homepage';
 
 function App() {
   return (
-    <Router>
+    <Router basename={'/'}>
+      <Navbar />
+      <br />
       <div className='container'>
-        <Navbar />
-        <br />
         <Route exact path='/' component={HomePage} />
         <Route path='/users' component={UsersList} />
         <Route path='/transactions' component={TransactionsList} />

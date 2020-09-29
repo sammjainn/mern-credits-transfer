@@ -20,7 +20,7 @@ export default class UsersList extends Component {
   }
   componentDidMount() {
     axios
-      .get('/users')
+      .get('http://localhost:5000/users')
       .then((response) => {
         // console.log(response);
         this.setState({ users: response.data });
@@ -38,17 +38,19 @@ export default class UsersList extends Component {
     return (
       <div>
         <h3>All Users</h3>
-        <table className='table'>
-          <thead className='thead-light'>
-            <tr>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Credits</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>{this.userList()}</tbody>
-        </table>
+        <div className='table-responsive'>
+          <table className='table table-hover table-striped '>
+            <thead className='thead-dark'>
+              <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Credits</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>{this.userList()}</tbody>
+          </table>
+        </div>
       </div>
     );
   }
