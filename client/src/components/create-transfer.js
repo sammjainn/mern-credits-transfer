@@ -70,16 +70,12 @@ export default class Transfer extends Component {
         .then((res) => console.log('success'))
         .catch((err) => console.log('error'));
 
-      setTimeout(() => {
-        alert(' Credits Transfered successfully');
-      });
-
       this.setState({ redirect: true });
     } else {
       this.setState({ error: true, errorMessage: 'Not enough credits!' });
       setTimeout(() => {
-        this.setState({ error: false }, 2000);
-      });
+        this.setState({ error: false, errorMessage: '' });
+      }, 2000);
     }
   };
 
