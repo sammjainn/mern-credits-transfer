@@ -44,7 +44,17 @@ export default class Transfer extends Component {
     const sender = this.state.users.filter((user) => {
       return user._id === sID;
     });
-    if (sender[0].credits >= this.state.amount) {
+
+    if (sender[0].username === this.state.username) {
+      this.setState({
+        error: true,
+        errorMessage: 'Sender and Receiver are same!'
+      });
+
+      setTimeout(() => {
+        this.setState({ error: false });
+      }, 2000);
+    } else if (sender[0].credits >= this.state.amount) {
       const transaction = {
         sentBy: sender[0].username,
         sentTo: this.state.username,
@@ -60,15 +70,11 @@ export default class Transfer extends Component {
         .put('/transfer/' + sID + '/' + id[0]._id, transaction)
         .then((res) => console.log('success'))
         .catch((err) => console.log('error'));
-
-      if (sender[0].username == this.state.username)
-        this.setState({ errorMessage: 'Sender and Receiver are same!' });
-
-      setTimeout(() => {
-        this.setState({ error: false });
-      }, 2000);
     } else {
       this.setState({ error: true, errorMessage: 'Not enough credits!' });
+      setTimeout(() => {
+        this.setState({ error: false, errorMessage: '' }, 2000);
+      });
     }
   };
 
