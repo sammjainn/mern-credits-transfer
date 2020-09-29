@@ -13,7 +13,7 @@ export default class Transfer extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:5000/users')
+      .get('/users')
       .then((response) => {
         // console.log(response);
         this.setState({ users: response.data });
@@ -52,18 +52,12 @@ export default class Transfer extends Component {
       };
 
       axios
-        .post(
-          'http://localhost:5000/transfer/' + sID + '/' + id[0]._id,
-          transaction
-        )
+        .post('/transfer/' + sID + '/' + id[0]._id, transaction)
         .then((res) => console.log('success'))
         .catch((err) => console.log('error'));
 
       axios
-        .put(
-          'http://localhost:5000/transfer/' + sID + '/' + id[0]._id,
-          transaction
-        )
+        .put('/transfer/' + sID + '/' + id[0]._id, transaction)
         .then((res) => console.log('success'))
         .catch((err) => console.log('error'));
     } else {
