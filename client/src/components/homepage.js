@@ -9,7 +9,7 @@ export default function homepage() {
         <p className='lead'>This is a simple credit transfer app.</p>
         <hr className='my-4' />
         <p>Made by Samriddhi Jain.</p>
-        <Link to={'/users'} className='btn btn-primary btn-lg'>
+        <Link to={'/users-list'} className='btn btn-primary btn-lg'>
           Get started
         </Link>
       </div>

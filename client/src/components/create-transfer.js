@@ -15,7 +15,6 @@ export default class Transfer extends Component {
     axios
       .get('/users')
       .then((response) => {
-        // console.log(response);
         this.setState({ users: response.data });
       })
       .catch((error) => console.log('The error is', error));
@@ -71,11 +70,16 @@ export default class Transfer extends Component {
         <div>
           <h3>Create New Transaction</h3>
 
-          {this.state.error ? (
-            <div className='alert alert-danger text-white'>
-              'Not Enough Credits'
-            </div>
-          ) : null}
+          {this.state.error
+            ? ((
+                <div className='alert alert-danger text-white'>
+                  'Not Enough Credits'
+                </div>
+              ),
+              setTimeout(() => {
+                this.setState((this.state.error: false));
+              }, 2000))
+            : null}
 
           <form onSubmit={this.onSubmit}>
             <div className='form-group'>
