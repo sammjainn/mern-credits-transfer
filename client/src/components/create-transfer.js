@@ -69,6 +69,7 @@ export default class Transfer extends Component {
         .put('/transfer/' + sID + '/' + id[0]._id, transaction)
         .then((res) => console.log('success'))
         .catch((err) => console.log('error'));
+
       setTimeout(() => {
         alert(' Credits Transfered successfully');
       });
@@ -77,7 +78,7 @@ export default class Transfer extends Component {
     } else {
       this.setState({ error: true, errorMessage: 'Not enough credits!' });
       setTimeout(() => {
-        this.setState({ error: false, errorMessage: '' }, 2000);
+        this.setState({ error: false }, 2000);
       });
     }
   };
