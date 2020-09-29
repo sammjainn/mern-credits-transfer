@@ -11,7 +11,7 @@ import HomePage from './components/homepage';
 
 function App() {
   return (
-    <Router basename={'/'}>
+    <Router basename={'/*'}>
       <Navbar />
       <br />
       <div className='container'>
