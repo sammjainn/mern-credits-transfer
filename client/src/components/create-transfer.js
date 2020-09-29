@@ -70,16 +70,14 @@ export default class Transfer extends Component {
         <div>
           <h3>Create New Transaction</h3>
 
-          {this.state.error
-            ? ((
-                <div className='alert alert-danger text-white'>
-                  'Not Enough Credits'
-                </div>
-              ),
-              setTimeout(() => {
-                this.setState((this.state.error: false));
-              }, 2000))
-            : null}
+          {this.state.error ? (
+            <div className='alert alert-danger text-white'>
+              'Not Enough Credits'
+            </div>
+          ) : null}
+          {setTimeout(() => {
+            this.setState({ error: false });
+          }, 2000)}
 
           <form onSubmit={this.onSubmit}>
             <div className='form-group'>
