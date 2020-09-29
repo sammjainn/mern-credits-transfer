@@ -11,13 +11,13 @@ import HomePage from './components/homepage';
 
 function App() {
   return (
-    <Router basename={'/*'}>
+    <Router>
       <Navbar />
       <br />
       <div className='container'>
         <Route exact path='/' component={HomePage} />
-        <Route path='/users' component={UsersList} />
-        <Route path='/transactions' component={TransactionsList} />
+        <Route path='/users-list' component={UsersList} />
+        <Route path='/transactions-log' component={TransactionsList} />
         <Route path='/transfer' component={Transfer} />
       </div>
     </Router>
