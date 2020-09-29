@@ -75,7 +75,6 @@ export default class Transfer extends Component {
       setTimeout(() => {
         this.setState({ redirect: true });
       }, 2000);
-      this.setState({ redirect: true });
     } else {
       this.setState({ error: true, errorMessage: 'Not enough credits!' });
       setTimeout(() => {
